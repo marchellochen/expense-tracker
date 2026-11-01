@@ -1,6 +1,27 @@
-@ExpenseTracker.Api_HostAddress = http://localhost:5254
+@host = http://localhost:5254
 
-GET {{ExpenseTracker.Api_HostAddress}}/weatherforecast/
-Accept: application/json
+### List categories
+GET {{host}}/api/categories
 
-###
+### Create a category
+POST {{host}}/api/categories
+Content-Type: application/json
+
+{
+  "name": "Food",
+  "color": "#D62E2F"
+}
+
+### Create an expense (use the category id returned above)
+POST {{host}}/api/expenses
+Content-Type: application/json
+
+{
+  "amount": 25000,
+  "date": "2026-11-01",
+  "note": "Lunch",
+  "categoryId": 1
+}
+
+### List expenses for a month
+GET {{host}}/api/expenses?month=2026-11
